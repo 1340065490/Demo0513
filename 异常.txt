@@ -1,0 +1,111 @@
+java 的异常处理通过5个关键字实现try,catch,finally ,throw,throws
+
+//下面的代码位于项目的上层
+try{
+//可能有异常的代码（比如读写文件）
+}catch(IOException e){
+//异常后的处理代码
+SYSO(e.getMessage());//一句异常消息
+e.printStackTrace();//详细的异常跟踪信息
+}catch(Exception e){
+//异常处理
+}finally{//可选
+//必须执行的代码（比如关闭文件，关闭数据库）
+}
+try-catch-finally结构中，try块是必需的，catch和finally块为可选，但两者至少须出现其一。
+fianlly块中语句不被执行的唯一情况：在异常处理代码中执行System.exit(1);将退出java虚拟机。
+
+在catch块中，可以加入用户自定义处理信息，也可以调用异常对象的方法输出异常信息
+
+void printStackTrace():输出异常的堆栈信息。堆栈信息包括程序运行到当前类的执行流程，它将输出
+从方法调用到异常抛出处的方法调用序列
+
+String getMessage()：返回异常信息描述字符串。该字符串描述异常产生的原因，是printStackTrace（）
+方法输出信息的一部分
+
+
+
+常见的异常类型
+
+算术异常类：ArithmeticExecption
+
+空指针异常类：NullPointerException
+
+类型强制转换异常：ClassCastException
+
+数组下标越界异常：ArrayIndexOutOfBoundsException
+
+欲得到的数据类型与实际得到的数据类型不匹配：InputMisMatchException
+
+文件未找到异常：FileNotFoundException
+
+字符串转换为数字异常：NumberFormatException
+
+方法接收非法参数：IllegalArgumentException
+
+
+
+
+
+
+声明异常  throws 
+
+public void fun(参数) throws ***Exception,***Exception{}
+
+通过throws继续声明异常。如果调用者不打算处理异常，则可以继续通过throws声明异常，让上一级调用者处理异常
+，main（）方法声明异常将由java虚拟机来处理。
+
+
+抛出异常  throw
+throw new ***Exception();
+
+可以使用throw自行抛出异常
+
+
+throw和throws的区别
+作用不同：throw用于在程序中抛出异常，throws用于声明在该方法内抛出了异常
+使用位置不同：throw位于方法体内部，可以作为单独语句使用;throws必须跟在方法参数列表的后面，不能单独使用。
+内容不同：throw抛出一个异常对象，而且只能是一个，throws后面跟异常类，而且可以跟多个异常类。
+
+异常的分类
+1.Throwable
+
+是所有错误和异常的超类，异常又分为运行时异常和非运行时异常，又可以分为不检查异常和检查型异常。
+
+
+2.Error和Exception
+  
+
+Error是错误，是程序无法处理的问题，一般由JVM抛出
+
+
+  Exception是异常，程序要尽可能去处理这些异常。
+
+
+3.运行时异常和非运行时异常
+  
+
+运行时异常一般称作 不检查异常，一般是由于逻辑错误导致的，可以处理也可以不处理。
+
+
+  非运行时异常称作 检查异常，是由编译器帮助检查的，如果不处理，程序不能编译通过，比如常见的IoeException,等等需要try catch或者throw出来的。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
